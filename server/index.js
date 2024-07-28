@@ -8,9 +8,12 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { register } from "./Controllers/AuthController.js"
 import authRoutes from "./Routes/AuthRoutes.js"
 import userRoutes from "./Routes/UserRoutes.js"
+import postRoutes from "./Routes/PostRoutes.js"
+import { register } from "./Controllers/AuthController.js"
+import { createPost } from './Controllers/PostController.js'
+import { verifyToken } from './Middleware/AuthMiddleWare.js'
 /* configuration */
 
 const __filename = fileURLToPath(import.meta.url) 
@@ -41,7 +44,7 @@ const upload = multer({storage})
 
 //routes with  files  
 app.post("/auth/register" , upload.single("picture") , register)
-
+app.post('/posts', verifyToken , upload.single("picture"), createPost)
 
 
 //Routes 
