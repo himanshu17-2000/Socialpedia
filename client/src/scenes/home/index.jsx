@@ -1,6 +1,11 @@
-const Home = ()=>{
-    return <div>
-        Home page 
-    </div>
-}
-export default Home 
+import { Box } from "@mui/material";
+import Navbar from "scenes/navbar";
+
+const Home = () => {
+  return (
+    <Box>
+      <Navbar />
+    </Box>
+  );
+};
+export default Home;
