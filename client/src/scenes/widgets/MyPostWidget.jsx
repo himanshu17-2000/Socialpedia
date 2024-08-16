@@ -37,6 +37,7 @@ const MyPostWidget = ({ picturePath }) => {
   const medium = palette.neutral.medium;
 
   const handlePost = async () => {
+    console.log("Handle post ran personal one")
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("description", post);
