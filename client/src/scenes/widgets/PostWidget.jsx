@@ -39,23 +39,27 @@ const PostWidget = ({ item }) => {
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(
-      `http://localhost:3001/posts/${item._id}/like`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId: loggedInUserId }),
-      }
-    );
-    const updatedPost = await response.json();
-    dispatch(setPost({ post: updatedPost }));
+    try {
+      const response = await fetch(
+        `http://localhost:3001/posts/${item._id}/like`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId: loggedInUserId }),
+        }
+      );
+      const updatedPost = await response.json();
+      console.log(updatedPost + " Lkes response yeh hai ki ");
+      dispatch(setPost({ post: updatedPost }));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <WidgetWrapper m="2rem 0rem">
-      
       <Friend
         friendId={item.userId}
         name={`${firstName} ${lastName}`}

@@ -1,5 +1,5 @@
 import express from 'express'
-import { getUser , addRemoveFriend , getUserFriends } from '../Controllers/userController.js'
+import { getUser , addRemoveFriend , getUserFriends } from '../Controllers/UserController.js'
 import { verifyToken } from '../Middleware/AuthMiddleWare.js'
 const UserRoutes = express.Router() 
 
