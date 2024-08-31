@@ -30,6 +30,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     if (isProfile) {
       getUserPosts();
     } else {
+      console.log("Hello")
       getPosts();
     }
   }, []);
