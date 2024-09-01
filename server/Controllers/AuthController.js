@@ -12,7 +12,7 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
-    if (!user) return res.status(400).json({ message: "user does not exis" });
+    if (!user) return res.status(400).json({ message: "user does not exist" });
     const isMatch = await bycrpt.compare(password, user.password);
     if (!isMatch)
       return res.status(400).json({ message: "Invalid credentials" });

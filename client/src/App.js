@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "theme";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -31,6 +33,7 @@ function App() {
               element={isAuth ? <Profile /> : <Navigate to="/" />}
             />
           </Routes>
+          <ToastContainer />
         </ThemeProvider>
       </BrowserRouter>
     </div>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import {
   Box,
   Button,
@@ -86,14 +87,22 @@ const Form = () => {
     });
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
-    if (loggedIn) {
+    console.log(loggedIn);
+    if (loggedIn.user) {
       dispatch(
         setLogin({
           user: loggedIn.user,
           token: loggedIn.token,
         })
       );
+      toast.success(`Welcome ${loggedIn.user.firstName}`, {
+        style: { backgroundColor: "green", color: "white" },
+      });
       navigate("/home");
+    } else {
+      toast.error(loggedIn.message, {
+        style: { backgroundColor: "red", color: "white" },
+      });
     }
   };
 
