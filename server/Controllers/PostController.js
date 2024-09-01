@@ -1,10 +1,17 @@
 import Post from "../Models/Post.js";
 import User from "../Models/User.js";
-
+import { v2 as cloudinary } from "cloudinary";
 export const createPost = async (req, res) => {
   try {
     const { userId, description, picturePath } = req.body;
     const user = await User.findById(userId);
+    const result = await cloudinary.uploader.upload(
+      `public/assets/${picturePath}`,
+      {
+        folder: "socialpedia/posts",
+      }
+    );
+
     const newPost = new Post({
       userId: userId,
       firstName: user.firstName,
@@ -12,7 +19,7 @@ export const createPost = async (req, res) => {
       location: user.location,
       description: description,
       userPicturePath: user.picturePath,
-      picturePath: picturePath,
+      picturePath: result.url,
       likes: {},
       comments: [],
     });

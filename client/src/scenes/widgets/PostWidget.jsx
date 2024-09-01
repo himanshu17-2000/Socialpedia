@@ -54,6 +54,7 @@ const PostWidget = ({ item }) => {
       const updatedPost = await response.json();
       console.log(updatedPost + " Lkes response yeh hai ki ");
       dispatch(setPost({ post: updatedPost }));
+      setPost("")
     } catch (error) {
       console.log(error.message);
     }
@@ -78,7 +79,7 @@ const PostWidget = ({ item }) => {
             borderRadius: "0.75rem",
             marginTop: "0.75rem",
           }}
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={picturePath}
         />
       )}
       <FlexBetween m="0.25rem">

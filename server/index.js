@@ -11,12 +11,13 @@ import { fileURLToPath } from "url";
 import authRoutes from "./Routes/AuthRoutes.js";
 import userRoutes from "./Routes/UserRoutes.js";
 import postRoutes from "./Routes/PostRoutes.js";
-import { register } from "./Controllers/AuthController.js";
-import { createPost } from "./Controllers/PostController.js";
-import { verifyToken } from "./Middleware/AuthMiddleWare.js";
-import { users, posts } from "./Data/index.js";
-import User from "./Models/User.js";
-import Post from "./Models/Post.js";
+import cloudinaryConnection from "./cloudinary.js";
+// import { register } from "./Controllers/AuthController.js";
+// import { createPost } from "./Controllers/PostController.js";
+// import { verifyToken } from "./Middleware/AuthMiddleWare.js";
+// import { users, posts } from "./Data/index.js";
+// import User from "./Models/User.js";
+// import Post from "./Models/Post.js";
 // import upload from "./multer-config.js";
 /* configuration */
 
@@ -32,7 +33,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
-
+cloudinaryConnection();
 // file Storage
 // const storage = multer.diskStorage({
 //     destination : function(req , file ,cb){
